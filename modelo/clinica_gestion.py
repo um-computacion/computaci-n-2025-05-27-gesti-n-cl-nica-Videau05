@@ -1,4 +1,3 @@
-# === MODELO ===
 from datetime import datetime
 
 class Paciente:
