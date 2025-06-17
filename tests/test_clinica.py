@@ -3,7 +3,7 @@ from datetime import datetime
 from modelo.clinica_gestion import (
     Clinica, Paciente, Medico, Especialidad, Receta,
     PacienteNoEncontradoException, MedicoNoDisponibleException,
-    RecetaInvalidaException
+    TurnoOcupadoException, RecetaInvalidaException
 )
 
 class TestClinica(unittest.TestCase):
@@ -34,6 +34,16 @@ class TestClinica(unittest.TestCase):
         with self.assertRaises(MedicoNoDisponibleException):
             self.clinica.agendar_turno("111", "MED999", "Clínica", self.fecha)
 
+    def test_agendar_turno_duplicado(self):
+        self.clinica.agendar_turno("111", "MED123", "Clínica", self.fecha)
+        with self.assertRaises(TurnoOcupadoException):
+            self.clinica.agendar_turno("111", "MED123", "Clínica", self.fecha)
+
+    def test_agendar_turno_dia_incorrecto(self):
+        fecha_mal_dia = datetime(2025, 6, 17, 10, 0)  # martes
+        with self.assertRaises(MedicoNoDisponibleException):
+            self.clinica.agendar_turno("111", "MED123", "Clínica", fecha_mal_dia)
+
     def test_emision_receta_valida(self):
         self.clinica.emitir_receta("111", "MED123", ["Paracetamol"])
         historia = self.clinica.obtener_historia_clinica_por_dni("111")
@@ -46,6 +56,10 @@ class TestClinica(unittest.TestCase):
     def test_receta_paciente_inexistente(self):
         with self.assertRaises(RecetaInvalidaException):
             self.clinica.emitir_receta("999", "MED123", ["Paracetamol"])
+
+    def test_historia_clinica_paciente_inexistente(self):
+        with self.assertRaises(PacienteNoEncontradoException):
+            self.clinica.obtener_historia_clinica_por_dni("999")
 
 if __name__ == "__main__":
     unittest.main()
