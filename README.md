@@ -1,14 +1,15 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/y_fEcNZn)
 # 🏥 Sistema de Gestión para una Clínica
-
+&&& Documentacion de ejecucion al final del readme
 ## 👤 Información del Alumno
 
 ### 📋 Datos Personales
-- **Nombre y Apellido**: [Completar con nombre y apellido]
+- **Nombre y Apellido**: Nicolas Videau
 - **Ciclo Lectivo**: 2025
-- **Carrera**: [Completar con nombre de la carrera]
+- **Carrera**: Ingenieria Informatica
 
 ## ⏰ Información Importante sobre la Entrega
-
+    
 ### 📅 Fechas Clave
 - **Fecha límite de entrega**: 17 de junio de 2025
 - **Fecha sugerida de entrega**: Semana del 10 de junio de 2025
@@ -345,3 +346,18 @@ El sistema debe incluir pruebas unitarias utilizando el módulo `unittest`, que 
 - ✅ Confirmar que los turnos y recetas se guardan correctamente en la historia clínica del paciente.
 
 ---
+
+## 📘 Documentación del sistema 
+
+### ▶️ Cómo ejecutar el sistema 
+
+Desde la raíz del proyecto, ejecutá la interfaz por consola con:
+
+python3 -m cli.interfaz
+
+Para ejecutar los tests unitarios:
+
+python3 -m unittest discover tests
+
+
+
